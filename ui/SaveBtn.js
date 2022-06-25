@@ -25,6 +25,9 @@ const Button = styled.button`
 	font-size: 1rem;
 	padding: 0.8rem 1.5rem;
 	transition: all 0.5s;
+	&:active {
+		opacity: 0.7;
+	}
 	&[disabled] {
 		opacity: 0.5;
 	}

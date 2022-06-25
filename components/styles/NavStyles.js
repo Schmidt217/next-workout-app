@@ -8,6 +8,15 @@ const NavStyles = styled.nav`
 	align-items: center;
 	font-size: 1rem;
 	width: 100%;
+	@media (max-width: 700px) {
+		padding: 10px;
+	}
+	h1 {
+		@media (max-width: 700px) {
+			font-size: 16px;
+			text-align: center;
+		}
+	}
 	a {
 		padding: 1rem 1.5rem;
 		align-items: center;
@@ -20,8 +29,9 @@ const NavStyles = styled.nav`
 		border: 0;
 		cursor: pointer;
 		@media (max-width: 700px) {
-			font-size: 10px;
+			font-size: 14px;
 			padding: 0 10px;
+			text-align: center;
 		}
 		&:after {
 			height: 2px;
@@ -41,9 +51,9 @@ const NavStyles = styled.nav`
 			text-decoration: none;
 			&:after {
 				width: calc(100% - 60px);
-			}
-			@media (max-width: 700px) {
-				width: calc(100% - 10px);
+				@media (max-width: 700px) {
+					width: calc(100% - 10px);
+				}
 			}
 		}
 	}

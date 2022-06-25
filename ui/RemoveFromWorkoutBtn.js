@@ -3,7 +3,6 @@ import styled from "styled-components";
 const RemoveFromWorkoutBtn = ({ myWorkout, setMyWorkout, exercise }) => {
 	return (
 		<Button
-			style={{ marginTop: "20px" }}
 			onClick={() => {
 				setMyWorkout(myWorkout.filter((workout) => workout.id !== exercise.id));
 			}}
@@ -21,6 +20,7 @@ const Button = styled.button`
 	border: 0;
 	border-radius: 5px;
 	display: flex;
+	margin-top: 20px;
 	margin: 0 auto;
 	text-transform: uppercase;
 	font-size: 1rem;

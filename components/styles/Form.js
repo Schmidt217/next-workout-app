@@ -1,16 +1,4 @@
-import styled, { keyframes } from "styled-components";
-
-const loading = keyframes`
-  from {
-    background-position: 0 0;
-    /* rotate: 0; */
-  }
-
-  to {
-    background-position: 100% 100%;
-    /* rotate: 360deg; */
-  }
-`;
+import styled from "styled-components";
 
 const Form = styled.form`
 	box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.05);
@@ -35,7 +23,6 @@ const Form = styled.form`
 			outline: 0;
 		}
 	}
-	button,
 	input[type="submit"] {
 		width: auto;
 		background: #5e7be6;
@@ -47,8 +34,9 @@ const Form = styled.form`
 		margin: 0.5rem 1.2rem;
 		padding: 0.5rem 1.2rem;
 	}
-	button:active {
+	input[type="submit"]:active {
 		transform: scale(0.98);
+		opacity: 0.7;
 	}
 `;
 
