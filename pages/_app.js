@@ -1,8 +1,9 @@
 import "../styles/globals.css";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocalStorage } from "../components/useLocalStorage";
 import Layout from "../components/Layout";
 import AddExerciseContextProvider from "../context/state";
+import "../styles/login.css";
 
 function MyApp({ Component, pageProps }) {
 	const [myWorkout, setMyWorkout] = useLocalStorage("exercise", []);
