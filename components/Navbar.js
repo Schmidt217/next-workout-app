@@ -1,4 +1,6 @@
+import { useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import Image from "next/image";
 import icon from "../images/weightlifting-icon.svg";
 import NavStyles from "./styles/NavStyles";
@@ -8,6 +10,14 @@ import { auth } from "../firebase";
 
 const Navbar = () => {
 	const [user] = useAuthState(auth);
+	const router = useRouter();
+
+	useEffect(() => {
+		if (!user) {
+			router.push("/login");
+		}
+	}, [user]);
+
 	return (
 		<NavStyles>
 			<Image src={icon} width={75} height={50} />

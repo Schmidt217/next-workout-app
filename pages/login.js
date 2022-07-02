@@ -76,7 +76,7 @@ function Login() {
 					Login with Google
 				</button>
 				<div>
-					<Link href="/reset">Forgot Password</Link>
+					<Link href="/resetPassword">Forgot Password</Link>
 				</div>
 				<div>
 					Don't have an account? <Link href="/register">Register</Link> now.

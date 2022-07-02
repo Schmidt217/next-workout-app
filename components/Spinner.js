@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Image from "next/image";
 import spinner from "../images/spinner.gif";
 
-const Spinner = () => {
+const Spinner = ({ width, height }) => {
 	return (
 		<>
 			<ImageStyle>
@@ -10,8 +10,8 @@ const Spinner = () => {
 					priority={true}
 					src={spinner}
 					alt="Loading..."
-					width={250}
-					height={250}
+					width={width}
+					height={height}
 					layout="fixed"
 					className="spinner"
 				/>

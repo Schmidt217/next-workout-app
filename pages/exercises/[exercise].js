@@ -43,7 +43,7 @@ const exerciseDetailPage = (props) => {
 		<>
 			<SearchExercise exercise={exercise} />
 			{props.loading ? (
-				<Spinner />
+				<Spinner width={250} height={250} />
 			) : exercises.length === 0 ? (
 				<h4 style={{ display: "flex", justifyContent: "center" }}>
 					No exercise found with that search parameter. Try searching for
