@@ -1,30 +1,54 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import {
-	auth,
-	signInWithEmailAndPassword,
-	signInWithGoogle,
-} from "../firebase";
-import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../firebase";
+import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+import { signInWithPopup, GoogleAuthProvider, getAuth } from "firebase/auth";
 import Spinner from "../components/Spinner";
 
 function Login() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-	const [user, loading, error] = useAuthState(auth);
+	const [
+		signInWithEmailAndPassword,
+		user,
+		loading,
+		error,
+	] = useSignInWithEmailAndPassword(auth);
+
+	const googleProvider = new GoogleAuthProvider();
+	const googleAuth = getAuth();
 
 	const router = useRouter();
 
+	const googleSignIn = () =>
+		signInWithPopup(googleAuth, googleProvider)
+			.then((result) => {
+				// This gives you a Google Access Token. You can use it to access the Google API.
+				const credential = GoogleAuthProvider.credentialFromResult(result);
+				const token = credential.accessToken;
+				// The signed-in user info.
+				const user = result.user;
+				// ...
+			})
+			.catch((error) => {
+				// Handle Errors here.
+				const errorCode = error.code;
+				const errorMessage = error.message;
+				// The AuthCredential type that was used.
+				const credential = GoogleAuthProvider.credentialFromError(error);
+				// ...
+			});
+
 	useEffect(() => {
 		if (loading) {
-			// maybe trigger a loading screen
 			return <Spinner />;
 		}
-		// if (user) {
-		// 	router.push("/");
-		// }
-	}, [user, loading]);
+		if (user) {
+			router.push("/");
+		}
+	}, [user, loading, googleSignIn]);
+
 	return (
 		<div className="login">
 			<div className="login__container">
@@ -48,15 +72,15 @@ function Login() {
 				>
 					Login
 				</button>
-				<button className="login__btn login__google" onClick={signInWithGoogle}>
+				<button className="login__btn login__google" onClick={googleSignIn}>
 					Login with Google
 				</button>
-				{/* <div>
-					<Link to="/reset">Forgot Password</Link>
+				<div>
+					<Link href="/reset">Forgot Password</Link>
 				</div>
 				<div>
-					Don't have an account? <Link to="/register">Register</Link> now.
-				</div> */}
+					Don't have an account? <Link href="/register">Register</Link> now.
+				</div>
 			</div>
 		</div>
 	);

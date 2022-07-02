@@ -4,6 +4,8 @@ import { useLocalStorage } from "../components/useLocalStorage";
 import Layout from "../components/Layout";
 import AddExerciseContextProvider from "../context/state";
 import "../styles/login.css";
+import "../styles/Register.css";
+import "../styles/reset.css";
 
 function MyApp({ Component, pageProps }) {
 	const [myWorkout, setMyWorkout] = useLocalStorage("exercise", []);
