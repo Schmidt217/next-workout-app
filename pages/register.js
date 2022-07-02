@@ -43,7 +43,11 @@ function Register() {
 	}, [user, loading]);
 
 	if (user) {
-		return <h1>New account successfully made!</h1>;
+		return (
+			<div className="register">
+				<h1>New account successfully made!</h1>;
+			</div>
+		);
 	} else {
 		return (
 			<div className="register">
