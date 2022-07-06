@@ -17,7 +17,8 @@ const NavStyles = styled.nav`
 			text-align: center;
 		}
 	}
-	a {
+	a,
+	button {
 		padding: 1rem 1.5rem;
 		align-items: center;
 		position: relative;
@@ -56,6 +57,11 @@ const NavStyles = styled.nav`
 				}
 			}
 		}
+	}
+	button {
+		position: absolute;
+		right: 0;
+		color: white;
 	}
 `;
 

@@ -16,6 +16,8 @@ const Form = styled.form`
 	textarea,
 	select {
 		width: 100%;
+		max-width: 1500px;
+		border-radius: 10px;
 		padding: 0.5rem;
 		font-size: 1rem;
 		border: 1px solid black;
@@ -24,11 +26,13 @@ const Form = styled.form`
 		}
 	}
 	input[type="submit"] {
+		display: block;
 		width: auto;
 		background: #5e7be6;
 		cursor: pointer;
 		color: white;
 		border: 0;
+		border-radius: 10px;
 		font-size: 2rem;
 		font-weight: 400;
 		margin: 0.5rem 1.2rem;

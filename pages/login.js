@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import Image from "next/image";
 import { auth } from "../firebase";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { signInWithPopup, GoogleAuthProvider, getAuth } from "firebase/auth";
 import Spinner from "../components/Spinner";
+import google from "../images/google.svg";
 
 function Login() {
 	const [email, setEmail] = useState("");
@@ -48,6 +50,7 @@ function Login() {
 			router.push("/");
 		}
 	}, [user, loading, googleSignIn]);
+	console.log(user);
 
 	return (
 		<div className="login">
@@ -73,6 +76,7 @@ function Login() {
 					Login
 				</button>
 				<button className="login__btn login__google" onClick={googleSignIn}>
+					<Image src={google} width={40} height={40} />
 					Login with Google
 				</button>
 				<div>

@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
-import {
-	useAuthState,
-	useCreateUserWithEmailAndPassword,
-} from "react-firebase-hooks/auth";
+import Image from "next/image";
+import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { signInWithGoogle } from "firebase/auth";
 import { auth } from "../firebase";
+import google from "../images/google.svg";
 
 import Spinner from "../components/Spinner";
 
@@ -80,6 +79,7 @@ function Register() {
 						className="register__btn register__google"
 						onClick={signInWithGoogle}
 					>
+						<Image src={google} height={40} width={40} />
 						Register with Google
 					</button>
 					<div>
@@ -90,4 +90,5 @@ function Register() {
 		);
 	}
 }
+
 export default Register;
