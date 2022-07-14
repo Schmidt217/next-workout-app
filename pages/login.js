@@ -23,7 +23,7 @@ function Login() {
 
 	const router = useRouter();
 
-	const googleSignIn = () =>
+	function googleSignIn() {
 		signInWithPopup(googleAuth, googleProvider)
 			.then((result) => {
 				// This gives you a Google Access Token. You can use it to access the Google API.
@@ -31,6 +31,7 @@ function Login() {
 				const token = credential.accessToken;
 				// The signed-in user info.
 				const user = result.user;
+				router.push("/");
 				// ...
 			})
 			.catch((error) => {
@@ -41,16 +42,23 @@ function Login() {
 				const credential = GoogleAuthProvider.credentialFromError(error);
 				// ...
 			});
+	}
 
-	useEffect(() => {
-		if (loading) {
-			return <Spinner />;
-		}
-		if (user) {
-			router.push("/");
-		}
-	}, [user, loading, googleSignIn]);
-	console.log(user);
+	function emailSignIn() {
+		signInWithEmailAndPassword(email, password)
+			.then(() => {
+				router.push("/");
+			})
+			.catch((error) => {
+				console.error(error.message);
+				alert(error.message);
+				// TODO: Error Handling
+			});
+	}
+
+	if (loading) {
+		return <Spinner />;
+	}
 
 	return (
 		<div className="login">
@@ -69,10 +77,7 @@ function Login() {
 					onChange={(e) => setPassword(e.target.value)}
 					placeholder="Password"
 				/>
-				<button
-					className="login__btn"
-					onClick={() => signInWithEmailAndPassword(email, password)}
-				>
+				<button className="login__btn" onClick={emailSignIn}>
 					Login
 				</button>
 				<button className="login__btn login__google" onClick={googleSignIn}>
