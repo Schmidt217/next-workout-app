@@ -16,7 +16,8 @@ const Navbar = () => {
 		if (!user) {
 			router.push("/login");
 		}
-	});
+	}, [user, router]);
+
 	return (
 		<NavStyles>
 			<Image src={icon} width={75} height={50} />

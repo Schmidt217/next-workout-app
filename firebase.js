@@ -1,10 +1,5 @@
 import { initializeApp } from "firebase/app";
-import {
-	GoogleAuthProvider,
-	getAuth,
-	signInWithPopup,
-	signOut,
-} from "firebase/auth";
+import { getAuth, signOut } from "firebase/auth";
 import {
 	getFirestore,
 	query,

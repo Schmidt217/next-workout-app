@@ -3,7 +3,6 @@ import Image from "next/image";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { signInWithGoogle } from "firebase/auth";
 import { auth } from "../firebase";
 import google from "../images/google.svg";
 
@@ -15,12 +14,8 @@ function Register() {
 	const [name, setName] = useState("");
 
 	const router = useRouter();
-	const [
-		createUserWithEmailAndPassword,
-		user,
-		loading,
-		error,
-	] = useCreateUserWithEmailAndPassword(auth);
+	const [createUserWithEmailAndPassword, user, loading, error] =
+		useCreateUserWithEmailAndPassword(auth);
 
 	const register = () => {
 		// if (!name) alert("Please enter name");
@@ -74,13 +69,6 @@ function Register() {
 					/>
 					<button className="register__btn" onClick={register}>
 						Register
-					</button>
-					<button
-						className="register__btn register__google"
-						onClick={signInWithGoogle}
-					>
-						<Image src={google} height={40} width={40} />
-						Register with Google
 					</button>
 					<div>
 						Already have an account? <Link href="/login">Login</Link> now.
