@@ -20,6 +20,7 @@ const TodaysWorkout = ({ myWorkout, setMyWorkout }) => {
 			<ClearExercisesModal
 				clearExercisesModal={clearExercisesModal}
 				setClearExercisesModal={setClearExercisesModal}
+				setMyWorkout={setMyWorkout}
 			/>
 
 			<SaveWorkoutModal

@@ -6,6 +6,7 @@ import { addExerciseData } from "../firebase";
 export const ClearExercisesModal = ({
 	clearExercisesModal,
 	setClearExercisesModal,
+	setMyWorkout,
 }) => {
 	return (
 		<Modal
