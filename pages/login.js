@@ -9,24 +9,29 @@ import {
 	signInWithEmailAndPassword,
 	getAuth,
 } from "firebase/auth";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../firebase";
 import google from "../images/google.svg";
 import facebook from "../images/Facebook.svg";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 
 function Login() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-	const [shouldSnackbarOpen, setShouldSnackbarOpen] = useState(false);
+	const [user] = useAuthState(auth);
 
 	const googleProvider = new GoogleAuthProvider();
 	const facebookProvider = new FacebookAuthProvider();
-	const auth = getAuth();
+	const loginAuth = getAuth();
 
 	const router = useRouter();
 
+	if (user) {
+		router.push("/");
+	}
+
 	function googleSignIn() {
-		signInWithPopup(auth, googleProvider)
+		signInWithPopup(loginAuth, googleProvider)
 			.then((result) => {
 				// This gives you a Google Access Token. You can use it to access the Google API.
 				const credential = GoogleAuthProvider.credentialFromResult(result);
@@ -42,12 +47,22 @@ function Login() {
 				const errorMessage = error.message;
 				// The AuthCredential type that was used.
 				const credential = GoogleAuthProvider.credentialFromError(error);
-				// ...
+				if (error) {
+					return toast.error(errorMessage, {
+						position: "top-center",
+						autoClose: 5000,
+						hideProgressBar: false,
+						closeOnClick: true,
+						pauseOnHover: true,
+						draggable: true,
+						progress: undefined,
+					});
+				}
 			});
 	}
 
 	function facebookSignIn() {
-		signInWithPopup(auth, facebookProvider)
+		signInWithPopup(loginAuth, facebookProvider)
 			.then((result) => {
 				// The signed-in user info.
 				const user = result.user;
@@ -66,11 +81,16 @@ function Login() {
 				// The AuthCredential type that was used.
 				const credential = FacebookAuthProvider.credentialFromError(error);
 				console.log(errorCode);
-				if (
-					error.code === "auth/account-exists-with-different-credential" ||
-					"auth/popup-closed-by-user"
-				) {
-					// stuff
+				if (error) {
+					return toast.error(errorMessage, {
+						position: "top-center",
+						autoClose: 5000,
+						hideProgressBar: false,
+						closeOnClick: true,
+						pauseOnHover: true,
+						draggable: true,
+						progress: undefined,
+					});
 				}
 
 				// ...
@@ -78,10 +98,9 @@ function Login() {
 	}
 
 	function emailSignIn() {
-		signInWithEmailAndPassword(auth, email, password)
+		signInWithEmailAndPassword(loginAuth, email, password)
 			.then(() => {
 				router.push("/");
-				console.log(email);
 			})
 			.catch((error) => {
 				console.log(error);
@@ -99,17 +118,6 @@ function Login() {
 
 	return (
 		<div className="login">
-			<ToastContainer
-				position="top-center"
-				autoClose={5000}
-				hideProgressBar={false}
-				newestOnTop={false}
-				closeOnClick
-				rtl={false}
-				pauseOnFocusLoss
-				draggable
-				pauseOnHover
-			/>
 			<div className="login__container">
 				<input
 					type="text"
