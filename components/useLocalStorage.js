@@ -8,6 +8,8 @@ function getStorageValue(key, defaultValue) {
 	}
 }
 
+// TODO: am I still using local storage?
+
 export const useLocalStorage = (key, defaultValue) => {
 	const [value, setValue] = useState(() => {
 		return getStorageValue(key, defaultValue);

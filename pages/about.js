@@ -1,19 +1,6 @@
 import AboutPage from "../components/styles/AboutPage";
-import { toast } from "react-toastify";
-import { useEffect } from "react";
 
 const About = () => {
-	useEffect(() => {
-		return toast.success("You're on the about page!", {
-			position: "top-center",
-			autoClose: 5000,
-			hideProgressBar: false,
-			closeOnClick: true,
-			pauseOnHover: true,
-			draggable: true,
-			progress: undefined,
-		});
-	}, []);
 	return (
 		<>
 			<AboutPage>

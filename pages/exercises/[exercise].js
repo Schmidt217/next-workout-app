@@ -6,7 +6,7 @@ import SearchExercise from "../../components/SearchExercise";
 import Spinner from "../../components/Spinner";
 import ErrorPage from "../../components/ErrorPage";
 
-const exerciseDetailPage = (props) => {
+const ExerciseDetailPage = (props) => {
 	const [exercises, setExercises] = useState([]);
 	const router = useRouter();
 	const { exercise } = router.query;
@@ -38,6 +38,7 @@ const exerciseDetailPage = (props) => {
 			search(exercise);
 		}
 	}, [exercise]);
+	console.log(exercises);
 
 	return (
 		<>
@@ -56,4 +57,4 @@ const exerciseDetailPage = (props) => {
 	);
 };
 
-export default exerciseDetailPage;
+export default ExerciseDetailPage;

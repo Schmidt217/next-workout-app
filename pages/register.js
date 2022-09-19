@@ -1,30 +1,46 @@
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { auth } from "../firebase";
-import google from "../images/google.svg";
+import { toast } from "react-toastify";
 
 import Spinner from "../components/Spinner";
 
 function Register() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-	const [name, setName] = useState("");
+	const [confirmPw, setConfirmPw] = useState("");
 
 	const router = useRouter();
 	const [createUserWithEmailAndPassword, user, loading, error] =
 		useCreateUserWithEmailAndPassword(auth);
 
 	const register = () => {
-		// if (!name) alert("Please enter name");
+		if (confirmPw !== password) {
+			return toast.error("Your passwords do not match!", {
+				position: "top-center",
+				autoClose: 5000,
+				hideProgressBar: false,
+				closeOnClick: true,
+				pauseOnHover: true,
+				draggable: true,
+				progress: undefined,
+			});
+		}
 		createUserWithEmailAndPassword(email, password);
-		console.log(email, password);
 	};
 
 	if (error) {
-		alert(error.message);
+		return toast.error(errorMessage, {
+			position: "top-center",
+			autoClose: 5000,
+			hideProgressBar: false,
+			closeOnClick: true,
+			pauseOnHover: true,
+			draggable: true,
+			progress: undefined,
+		});
 	}
 
 	useEffect(() => {
@@ -49,13 +65,6 @@ function Register() {
 					<input
 						type="text"
 						className="register__textBox"
-						value={name}
-						onChange={(e) => setName(e.target.value)}
-						placeholder="Full Name"
-					/>
-					<input
-						type="text"
-						className="register__textBox"
 						value={email}
 						onChange={(e) => setEmail(e.target.value)}
 						placeholder="E-mail Address"
@@ -67,6 +76,14 @@ function Register() {
 						onChange={(e) => setPassword(e.target.value)}
 						placeholder="Password"
 					/>
+					<input
+						type="password"
+						className="register__textBox"
+						value={confirmPw}
+						onChange={(e) => setConfirmPw(e.target.value)}
+						placeholder="Confirm Password"
+					/>
+
 					<button className="register__btn" onClick={register}>
 						Register
 					</button>

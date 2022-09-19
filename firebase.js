@@ -2,11 +2,13 @@ import { initializeApp } from "firebase/app";
 import { getAuth, signOut } from "firebase/auth";
 import {
 	getFirestore,
-	query,
 	getDocs,
 	collection,
-	where,
 	addDoc,
+	where,
+	deleteDoc,
+	doc,
+	setDoc,
 } from "firebase/firestore";
 import { toast } from "react-toastify";
 
@@ -24,11 +26,11 @@ const firebaseApp = initializeApp(firebaseConfig);
 export const auth = getAuth(firebaseApp);
 export const db = getFirestore(firebaseApp);
 
-export async function addExerciseData(workoutData) {
-	console.log(db);
+const workoutRef = collection(db, "favoriteWorkouts");
+
+export async function addExerciseToFavorites(workoutData) {
 	try {
-		const docRef = await addDoc(collection(db, "saveWorkouts"), {
-			workoutName: "Workout Name",
+		await setDoc(doc(db, "favoriteWorkouts", workoutData.id), {
 			bodyPart: workoutData.bodyPart,
 			equipment: workoutData.equipment,
 			gifUrl: workoutData.gifUrl,
@@ -36,7 +38,7 @@ export async function addExerciseData(workoutData) {
 			name: workoutData.name,
 			target: workoutData.target,
 		});
-		console.log("Document written with ID: ", docRef.id);
+
 		return toast.success("Workout Saved!", {
 			position: "top-center",
 			autoClose: 5000,
@@ -60,26 +62,27 @@ export async function addExerciseData(workoutData) {
 	}
 }
 
-export async function getName() {
+export async function removeExerciseFromFavorites(exerciseId) {
+	const docRef = doc(db, "favoriteWorkouts", exerciseId);
 	try {
-		const querySnapshot = await getDocs(collection(db, auth.currentUser.uid));
-		console.log({
-			...querySnapshot.docs[0]._document.data.value.mapValue.fields.name,
-		});
-		return {
-			...querySnapshot.docs[0]._document.data.value.mapValue.fields.name,
-		};
-	} catch (e) {
-		console.log(e);
+		console.log(exerciseId);
+		await deleteDoc(docRef);
+		console.log(docRef);
+		console.log("Delete Successful");
+	} catch (error) {
+		console.log(error);
 	}
 }
 
 export async function getExerciseData() {
 	try {
-		const querySnapshot = await getDocs(collection(db, "saveWorkouts"));
+		let exerciseList = [];
+		const querySnapshot = await getDocs(workoutRef);
 		querySnapshot.forEach((doc) => {
-			console.log(doc._document.data.value.mapValue.fields);
+			exerciseList.push(doc.data());
 		});
+		console.log(exerciseList);
+		return exerciseList;
 	} catch (error) {
 		console.log(error);
 	}

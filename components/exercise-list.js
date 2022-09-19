@@ -1,5 +1,4 @@
 import ExerciseItem from "./ExerciseItem";
-import ExerciseCard from "./styles/ExerciseCard";
 import ExerciseView from "./styles/ExerciseView";
 
 /**
