@@ -28,7 +28,7 @@ const Button = styled.button`
 	border: 0;
 	border-radius: 5px;
 	position: relative;
-	left: 100%;
+	left: 90%;
 	padding: 0.8rem 1.5rem;
 	transition: all 0.5s;
 `;

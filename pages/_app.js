@@ -8,6 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "../styles/login.css";
 import "../styles/register.css";
 import "../styles/reset.css";
+import "../styles/nav.css";
 
 function MyApp({ Component, pageProps }) {
 	const [myWorkout, setMyWorkout] = useLocalStorage("exercise", []);

@@ -8,8 +8,14 @@ const NavStyles = styled.nav`
 	align-items: center;
 	font-size: 1rem;
 	width: 100%;
+	box-shadow: 0 2px 2px 2px rgba(9, 9, 9, 0.23);
 	@media (max-width: 700px) {
-		padding: 10px;
+		position: absolute;
+		top: 0;
+		width: 175px;
+		height: 100vh;
+		transition: all 300ms ease-in-out;
+		transform: translateX(-10%);
 	}
 	h1 {
 		@media (max-width: 700px) {
@@ -29,10 +35,16 @@ const NavStyles = styled.nav`
 		background: none;
 		border: 0;
 		cursor: pointer;
+		@media (max-width: 900px) {
+			padding: 1rem, 0.5rem;
+		}
 		@media (max-width: 700px) {
 			font-size: 14px;
 			padding: 0 10px;
 			text-align: center;
+			display: block;
+			transform: translateX(0%);
+			transition: transform 0.4s ease-in;
 		}
 		&:after {
 			height: 2px;
