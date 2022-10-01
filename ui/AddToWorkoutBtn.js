@@ -1,10 +1,6 @@
-import { useContext } from "react";
 import styled from "styled-components";
-import { AddExerciseContext } from "../context/state";
 
 const AddToWorkoutBtn = (props) => {
-	const addExerciseCtx = useContext(AddExerciseContext);
-
 	return (
 		<Button
 			style={{ marginTop: "20px" }}

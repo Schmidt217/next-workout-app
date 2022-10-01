@@ -1,16 +1,19 @@
 import styled from "styled-components";
 import Image from "next/image";
 import favoritedIcon from "../images/mark.png";
-import {
-	addExerciseToFavorites,
-	removeExerciseFromFavorites,
-} from "../firebase";
+import { removeExerciseFromFavorites } from "../firebase";
 
-const RemoveFavoritesBtn = ({ exercise }) => {
+const RemoveFavoritesBtn = ({
+	exercise,
+	refreshExercises,
+	getFavoritesExercises,
+}) => {
 	return (
 		<Button
 			onClick={() => {
 				removeExerciseFromFavorites(exercise.id);
+				refreshExercises();
+				getFavoritesExercises();
 			}}
 		>
 			<Image alt="favorites" src={favoritedIcon} width={25} height={20} />

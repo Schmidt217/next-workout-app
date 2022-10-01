@@ -1,39 +1,41 @@
-import { useEffect } from "react";
-import { useRouter } from "next/router";
+import { useEffect, useContext } from "react";
 import AddToWorkoutBtn from "../ui/AddToWorkoutBtn";
 import AddFavoritesBtn from "../ui/AddFavoritesBtn";
 import RemoveFromWorkoutBtn from "../ui/RemoveFromWorkoutBtn";
 import ExerciseCard from "./styles/ExerciseCard";
 import RemoveFavoritesBtn from "../ui/RemoveFavoritesBtn";
-import { getExerciseData } from "../firebase";
-
-// TODO: add a 'favorites' button and connect it to firestore
+import { ExerciseContext } from "../context/state";
 
 const ExerciseItem = (props) => {
-	const router = useRouter();
 	const { gifUrl, name, equipment, id, target } = props.exercise;
 	const { myWorkout, setMyWorkout } = props;
+	const exerciseCtx = useContext(ExerciseContext);
 
-	// let exerciseData;
-
-	// useEffect(() => {
-	// 	const getExercises = async () => {
-	// 		exerciseData = await getExerciseData();
-	// 	};
-	// 	getExercises();
-	// }, [exerciseData]);
+	useEffect(() => {
+		exerciseCtx.getExercises();
+	}, []);
 
 	const isAddedToWorkout = myWorkout?.find((item) => item.id === id);
-	// const isAddedToFavorites = exerciseData?.find((item) => console.log(item));
+	const isAddedToFavorites = exerciseCtx.favoriteExercises?.find(
+		(item) => item.id === id
+	);
 
 	return (
 		<ExerciseCard>
 			<div>
-				{/* {isAddedToFavorites ? (
-					<RemoveFavoritesBtn exercise={props.exercise} />
+				{isAddedToFavorites ? (
+					<RemoveFavoritesBtn
+						exercise={props.exercise}
+						refreshExercises={exerciseCtx.refreshExercises}
+						getFavoritesExercises={exerciseCtx.getFavoritesExercises}
+					/>
 				) : (
-					<AddFavoritesBtn exercise={props.exercise} />
-				)} */}
+					<AddFavoritesBtn
+						exercise={props.exercise}
+						refreshExercises={exerciseCtx.refreshExercises}
+					/>
+				)}
+
 				<img
 					src={gifUrl}
 					alt="Exercise GIF"

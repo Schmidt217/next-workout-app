@@ -2,7 +2,7 @@ import "../styles/globals.css";
 import React, { useEffect, useState } from "react";
 import { useLocalStorage } from "../components/useLocalStorage";
 import Layout from "../components/Layout";
-import AddExerciseContextProvider from "../context/state";
+import ExerciseContextProvider from "../context/state";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../styles/login.css";
@@ -14,7 +14,7 @@ function MyApp({ Component, pageProps }) {
 	const [loading, setLoading] = useState(false);
 	return (
 		<>
-			<AddExerciseContextProvider>
+			<ExerciseContextProvider>
 				<Layout>
 					<Component
 						{...pageProps}
@@ -24,7 +24,7 @@ function MyApp({ Component, pageProps }) {
 						setMyWorkout={setMyWorkout}
 					/>
 				</Layout>
-			</AddExerciseContextProvider>
+			</ExerciseContextProvider>
 
 			<ToastContainer
 				position="top-center"

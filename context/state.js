@@ -1,35 +1,49 @@
 import { createContext, useState } from "react";
+import { getExerciseData } from "../firebase";
 
-export const AddExerciseContext = createContext({
-	id: [],
-	addWorkout: (id) => {},
-	removeWorkout: (id) => {},
-});
+export const ExerciseContext = createContext({});
 
-const AddExerciseContextProvider = ({ children }) => {
-	const [addedExercises, setAddedExercises] = useState([]);
+const ExerciseContextProvider = ({ children }) => {
+	const [favoriteExercises, setFavoriteExercises] = useState([]);
+	const [exercises, setExercises] = useState("");
+	const [loading, setLoading] = useState(false);
 
-	const addExercise = (id) => {
-		setAddedExercises((currentExercises) => [...currentExercises, id]);
+	const getExercises = async () => {
+		const data = await getExerciseData();
+		setFavoriteExercises(data);
 	};
 
-	const removeExercise = (id) => {
-		setAddedExercises((selectedExerciseId) =>
-			selectedExerciseId.filter((ExerciseId) => ExerciseId !== id)
-		);
+	const refreshExercises = () => {
+		getExercises();
+	};
+
+	const getFavoritesExercises = () => {
+		setLoading(true);
+		getExerciseData()
+			.then((data) => {
+				setExercises(data);
+				setLoading(false);
+				console.log(data);
+			})
+			.catch(() => {
+				setLoading(false);
+				console.error("There was an error retrieving the data: ", error);
+			});
 	};
 
 	const value = {
-		// ids: exercise.id,
-		addExercise,
-		removeExercise,
+		refreshExercises,
+		getExercises,
+		getFavoritesExercises,
+		favoriteExercises,
+		exercises,
 	};
 
 	return (
-		<AddExerciseContext.Provider value={value}>
+		<ExerciseContext.Provider value={value}>
 			{children}
-		</AddExerciseContext.Provider>
+		</ExerciseContext.Provider>
 	);
 };
 
-export default AddExerciseContextProvider;
+export default ExerciseContextProvider;

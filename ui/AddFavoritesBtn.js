@@ -3,11 +3,12 @@ import Image from "next/image";
 import starIcon from "../images/star.png";
 import { addExerciseToFavorites } from "../firebase";
 
-const AddFavoritesBtn = ({ exercise }) => {
+const AddFavoritesBtn = ({ exercise, refreshExercises }) => {
 	return (
 		<Button
 			onClick={() => {
 				addExerciseToFavorites(exercise);
+				refreshExercises();
 			}}
 		>
 			<Image alt="favorites" src={starIcon} width={25} height={20} />

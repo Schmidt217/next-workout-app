@@ -4,8 +4,6 @@ import {
 	getFirestore,
 	getDocs,
 	collection,
-	addDoc,
-	where,
 	deleteDoc,
 	doc,
 	setDoc,
@@ -19,7 +17,7 @@ const firebaseConfig = {
 	storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
 	messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
 	appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
-	measurementId: "G-Z03G59QY6P",
+	measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
 
 const firebaseApp = initializeApp(firebaseConfig);
@@ -30,7 +28,7 @@ const workoutRef = collection(db, "favoriteWorkouts");
 
 export async function addExerciseToFavorites(workoutData) {
 	try {
-		await setDoc(doc(db, "favoriteWorkouts", workoutData.id), {
+		const res = await setDoc(doc(db, "favoriteWorkouts", workoutData.id), {
 			bodyPart: workoutData.bodyPart,
 			equipment: workoutData.equipment,
 			gifUrl: workoutData.gifUrl,
@@ -39,18 +37,19 @@ export async function addExerciseToFavorites(workoutData) {
 			target: workoutData.target,
 		});
 
-		return toast.success("Workout Saved!", {
+		toast.success("Workout Added to Favorites!", {
 			position: "top-center",
-			autoClose: 5000,
+			autoClose: 2000,
 			hideProgressBar: false,
 			closeOnClick: true,
 			pauseOnHover: false,
 			draggable: true,
 			progress: undefined,
 		});
+		return res;
 	} catch (error) {
 		console.error(error);
-		return toast.error(error.message, {
+		toast.error(error.message, {
 			position: "top-center",
 			autoClose: 5000,
 			hideProgressBar: false,
@@ -65,12 +64,26 @@ export async function addExerciseToFavorites(workoutData) {
 export async function removeExerciseFromFavorites(exerciseId) {
 	const docRef = doc(db, "favoriteWorkouts", exerciseId);
 	try {
-		console.log(exerciseId);
 		await deleteDoc(docRef);
-		console.log(docRef);
-		console.log("Delete Successful");
+		toast.success("Workout Removed From Favorites!", {
+			position: "top-center",
+			autoClose: 2000,
+			hideProgressBar: false,
+			closeOnClick: true,
+			pauseOnHover: false,
+			draggable: true,
+			progress: undefined,
+		});
 	} catch (error) {
-		console.log(error);
+		toast.error(error.message, {
+			position: "top-center",
+			autoClose: 5000,
+			hideProgressBar: false,
+			closeOnClick: true,
+			pauseOnHover: false,
+			draggable: true,
+			progress: undefined,
+		});
 	}
 }
 
@@ -81,10 +94,9 @@ export async function getExerciseData() {
 		querySnapshot.forEach((doc) => {
 			exerciseList.push(doc.data());
 		});
-		console.log(exerciseList);
 		return exerciseList;
 	} catch (error) {
-		console.log(error);
+		console.error(error);
 	}
 }
 
