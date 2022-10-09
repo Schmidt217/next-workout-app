@@ -37,6 +37,7 @@ const ExerciseDetailPage = (props) => {
 		if (exercise) {
 			search(exercise);
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [exercise]);
 
 	return (

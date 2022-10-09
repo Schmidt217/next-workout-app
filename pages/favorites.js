@@ -1,9 +1,9 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useContext } from "react";
 import { ExerciseContext } from "../context/state";
 import ExerciseList from "../components/exercise-list";
 import Spinner from "../components/Spinner";
 import { useAuthState } from "react-firebase-hooks/auth";
-import NoUserPage from "../components/noUserPage";
+import NoUserPage from "../components/NoUserPage";
 import { auth } from "../firebase";
 
 function Favorites(props) {

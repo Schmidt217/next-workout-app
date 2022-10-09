@@ -1,7 +1,7 @@
 import TodaysWorkout from "../components/TodaysWorkout";
 import { auth } from "../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
-import NoUserPage from "../components/noUserPage";
+import NoUserPage from "../components/NoUserPage";
 
 const Workout = (props) => {
 	const [user] = useAuthState(auth);
