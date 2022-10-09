@@ -1,5 +1,12 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, signOut } from "firebase/auth";
+import {
+	signInWithPopup,
+	GoogleAuthProvider,
+	FacebookAuthProvider,
+	signInWithEmailAndPassword,
+	getAuth,
+	signOut,
+} from "firebase/auth";
 import {
 	getFirestore,
 	getDocs,
@@ -22,13 +29,97 @@ const firebaseConfig = {
 
 const firebaseApp = initializeApp(firebaseConfig);
 export const auth = getAuth(firebaseApp);
-export const db = getFirestore(firebaseApp);
+const db = getFirestore(firebaseApp);
+const googleProvider = new GoogleAuthProvider();
+const facebookProvider = new FacebookAuthProvider();
 
-const workoutRef = collection(db, "favoriteWorkouts");
+// - LOGIN METHODS
+
+export function googleSignIn() {
+	signInWithPopup(auth, googleProvider)
+		.then((result) => {
+			// This gives you a Google Access Token. You can use it to access the Google API.
+			const credential = GoogleAuthProvider.credentialFromResult(result);
+			const token = credential.accessToken;
+			// The signed-in user info.
+			const user = result.user;
+
+			// ...
+		})
+		.catch((error) => {
+			// Handle Errors here.
+			const errorCode = error.code;
+			const errorMessage = error.message;
+			// The AuthCredential type that was used.
+			const credential = GoogleAuthProvider.credentialFromError(error);
+			if (error) {
+				return toast.error(errorMessage, {
+					position: "top-center",
+					autoClose: 5000,
+					hideProgressBar: false,
+					closeOnClick: true,
+					pauseOnHover: true,
+					draggable: true,
+					progress: undefined,
+				});
+			}
+		});
+}
+
+export function facebookSignIn() {
+	signInWithPopup(auth, facebookProvider)
+		.then((result) => {
+			// The signed-in user info.
+			const user = result.user;
+			// This gives you a Facebook Access Token. You can use it to access the Facebook API.
+			const credential = FacebookAuthProvider.credentialFromResult(result);
+			const accessToken = credential.accessToken;
+		})
+		.catch((error) => {
+			// Handle Errors here.
+			const errorCode = error.code;
+			const errorMessage = error.message;
+			const email = error.customData.email;
+			// The AuthCredential type that was used.
+			const credential = FacebookAuthProvider.credentialFromError(error);
+			if (error) {
+				return toast.error(errorMessage, {
+					position: "top-center",
+					autoClose: 5000,
+					hideProgressBar: false,
+					closeOnClick: true,
+					pauseOnHover: true,
+					draggable: true,
+					progress: undefined,
+				});
+			}
+		});
+}
+
+export function emailSignIn() {
+	signInWithEmailAndPassword(auth, email, password)
+		.then(() => {
+			const user = userCredential.user;
+		})
+		.catch((error) => {
+			console.log(error);
+			return toast.error("Incorrect email or password", {
+				position: "top-center",
+				autoClose: 5000,
+				hideProgressBar: false,
+				closeOnClick: true,
+				pauseOnHover: true,
+				draggable: true,
+				progress: undefined,
+			});
+		});
+}
+
+// - DATABASE METHODS
 
 export async function addExerciseToFavorites(workoutData) {
 	try {
-		const res = await setDoc(doc(db, "favoriteWorkouts", workoutData.id), {
+		const res = await setDoc(doc(db, auth.currentUser.uid, workoutData.id), {
 			bodyPart: workoutData.bodyPart,
 			equipment: workoutData.equipment,
 			gifUrl: workoutData.gifUrl,
@@ -62,7 +153,7 @@ export async function addExerciseToFavorites(workoutData) {
 }
 
 export async function removeExerciseFromFavorites(exerciseId) {
-	const docRef = doc(db, "favoriteWorkouts", exerciseId);
+	const docRef = doc(db, auth.currentUser.uid, exerciseId);
 	try {
 		await deleteDoc(docRef);
 		toast.success("Workout Removed From Favorites!", {
@@ -90,7 +181,7 @@ export async function removeExerciseFromFavorites(exerciseId) {
 export async function getExerciseData() {
 	try {
 		let exerciseList = [];
-		const querySnapshot = await getDocs(workoutRef);
+		const querySnapshot = await getDocs(collection(db, auth.currentUser.uid));
 		querySnapshot.forEach((doc) => {
 			exerciseList.push(doc.data());
 		});

@@ -2,118 +2,21 @@ import React, { useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Image from "next/image";
-import {
-	signInWithPopup,
-	GoogleAuthProvider,
-	FacebookAuthProvider,
-	signInWithEmailAndPassword,
-	getAuth,
-} from "firebase/auth";
+
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "../firebase";
+import { auth, googleSignIn, facebookSignIn, emailSignIn } from "../firebase";
 import google from "../images/google.svg";
 import facebook from "../images/Facebook.svg";
-import { toast } from "react-toastify";
 
 function Login() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [user] = useAuthState(auth);
 
-	const googleProvider = new GoogleAuthProvider();
-	const facebookProvider = new FacebookAuthProvider();
-	const loginAuth = getAuth();
-
 	const router = useRouter();
 
 	if (user) {
 		router.push("/");
-	}
-
-	function googleSignIn() {
-		signInWithPopup(loginAuth, googleProvider)
-			.then((result) => {
-				// This gives you a Google Access Token. You can use it to access the Google API.
-				const credential = GoogleAuthProvider.credentialFromResult(result);
-				const token = credential.accessToken;
-				// The signed-in user info.
-				const user = result.user;
-				router.push("/");
-				// ...
-			})
-			.catch((error) => {
-				// Handle Errors here.
-				const errorCode = error.code;
-				const errorMessage = error.message;
-				// The AuthCredential type that was used.
-				const credential = GoogleAuthProvider.credentialFromError(error);
-				if (error) {
-					return toast.error(errorMessage, {
-						position: "top-center",
-						autoClose: 5000,
-						hideProgressBar: false,
-						closeOnClick: true,
-						pauseOnHover: true,
-						draggable: true,
-						progress: undefined,
-					});
-				}
-			});
-	}
-
-	function facebookSignIn() {
-		signInWithPopup(loginAuth, facebookProvider)
-			.then((result) => {
-				// The signed-in user info.
-				const user = result.user;
-
-				// This gives you a Facebook Access Token. You can use it to access the Facebook API.
-				const credential = FacebookAuthProvider.credentialFromResult(result);
-				const accessToken = credential.accessToken;
-				router.push("/");
-			})
-			.catch((error) => {
-				// Handle Errors here.
-				const errorCode = error.code;
-				const errorMessage = error.message;
-				const email = error.customData.email;
-
-				// The AuthCredential type that was used.
-				const credential = FacebookAuthProvider.credentialFromError(error);
-				console.log(errorCode);
-				if (error) {
-					return toast.error(errorMessage, {
-						position: "top-center",
-						autoClose: 5000,
-						hideProgressBar: false,
-						closeOnClick: true,
-						pauseOnHover: true,
-						draggable: true,
-						progress: undefined,
-					});
-				}
-
-				// ...
-			});
-	}
-
-	function emailSignIn() {
-		signInWithEmailAndPassword(loginAuth, email, password)
-			.then(() => {
-				router.push("/");
-			})
-			.catch((error) => {
-				console.log(error);
-				return toast.error("Incorrect email or password", {
-					position: "top-center",
-					autoClose: 5000,
-					hideProgressBar: false,
-					closeOnClick: true,
-					pauseOnHover: true,
-					draggable: true,
-					progress: undefined,
-				});
-			});
 	}
 
 	return (

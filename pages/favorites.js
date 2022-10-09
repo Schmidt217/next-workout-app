@@ -2,19 +2,23 @@ import { useEffect, useState, useContext } from "react";
 import { ExerciseContext } from "../context/state";
 import ExerciseList from "../components/exercise-list";
 import Spinner from "../components/Spinner";
+import { useAuthState } from "react-firebase-hooks/auth";
+import NoUserPage from "../components/noUserPage";
+import { auth } from "../firebase";
 
 function Favorites(props) {
 	const exerciseCtx = useContext(ExerciseContext);
+	const [user] = useAuthState(auth);
 
 	useEffect(() => {
 		exerciseCtx.getFavoritesExercises();
 	}, []);
 
-	if (exerciseCtx.loading) {
+	if (exerciseCtx.exercises.length < 0) {
 		return <Spinner />;
 	}
 
-	return (
+	return user ? (
 		<>
 			<h1
 				style={{
@@ -25,7 +29,7 @@ function Favorites(props) {
 			>
 				Favorite Workouts
 			</h1>
-			{exerciseCtx.exercises.length === 0 ? (
+			{exerciseCtx.exercises?.length === 0 ? (
 				"You have no favorited exercises. Search for exercises and press the star icon to favorite a workout!"
 			) : (
 				<ExerciseList
@@ -35,6 +39,8 @@ function Favorites(props) {
 				/>
 			)}
 		</>
+	) : (
+		<NoUserPage />
 	);
 }
 

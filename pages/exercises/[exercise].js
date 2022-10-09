@@ -38,7 +38,6 @@ const ExerciseDetailPage = (props) => {
 			search(exercise);
 		}
 	}, [exercise]);
-	console.log(exercises);
 
 	return (
 		<>

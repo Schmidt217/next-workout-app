@@ -9,7 +9,7 @@ const ExerciseList = (props) => {
 
 	return (
 		<ExerciseView>
-			{exercises.map((exercise) => (
+			{exercises?.map((exercise) => (
 				<ExerciseItem key={exercise.id} exercise={exercise} {...extraProps} />
 			))}
 		</ExerciseView>

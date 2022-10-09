@@ -6,7 +6,6 @@ export const ExerciseContext = createContext({});
 const ExerciseContextProvider = ({ children }) => {
 	const [favoriteExercises, setFavoriteExercises] = useState([]);
 	const [exercises, setExercises] = useState("");
-	const [loading, setLoading] = useState(false);
 
 	const getExercises = async () => {
 		const data = await getExerciseData();
@@ -18,16 +17,13 @@ const ExerciseContextProvider = ({ children }) => {
 	};
 
 	const getFavoritesExercises = () => {
-		setLoading(true);
 		getExerciseData()
 			.then((data) => {
 				setExercises(data);
-				setLoading(false);
-				console.log(data);
 			})
 			.catch(() => {
-				setLoading(false);
 				console.error("There was an error retrieving the data: ", error);
+				return <h2>There was an error loading the favorites</h2>;
 			});
 	};
 
