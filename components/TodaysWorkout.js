@@ -3,19 +3,12 @@ import { useState } from "react";
 import ExerciseItem from "./ExerciseItem";
 import ExerciseView from "./styles/ExerciseView";
 import ClearWorkoutBtn from "../ui/ClearWorkoutBtn";
-import SaveBtn from "../ui/SaveBtn";
-import { ClearExercisesModal, SaveWorkoutModal } from "./Modals";
+import { ClearExercisesModal } from "./Modals";
 
 // TODO: make save workout modal function
 
 const TodaysWorkout = ({ myWorkout, setMyWorkout }) => {
 	const [clearExercisesModal, setClearExercisesModal] = useState(false);
-	const [saveWorkoutModal, setSaveWorkoutModal] = useState(false);
-	const [workoutName, setWorkoutName] = useState("");
-
-	function updateWorkoutName(e) {
-		setWorkoutName(e.target.value);
-	}
 
 	return (
 		<div>
@@ -23,13 +16,6 @@ const TodaysWorkout = ({ myWorkout, setMyWorkout }) => {
 				clearExercisesModal={clearExercisesModal}
 				setClearExercisesModal={setClearExercisesModal}
 				setMyWorkout={setMyWorkout}
-			/>
-			<SaveWorkoutModal
-				saveWorkoutModal={saveWorkoutModal}
-				setSaveWorkoutModal={setSaveWorkoutModal}
-				workoutName={workoutName}
-				updateWorkoutName={updateWorkoutName}
-				workoutData={myWorkout}
 			/>
 
 			{myWorkout?.length === 0 && (
@@ -62,7 +48,6 @@ const TodaysWorkout = ({ myWorkout, setMyWorkout }) => {
 							/>
 						))}
 					</ExerciseView>
-					{/* <SaveBtn setSaveWorkoutModal={setSaveWorkoutModal} /> */}
 				</>
 			)}
 		</div>

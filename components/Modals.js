@@ -2,7 +2,6 @@
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import styled from "styled-components";
-import { addExerciseData } from "../firebase";
 
 export const ClearExercisesModal = ({
 	clearExercisesModal,
@@ -51,65 +50,6 @@ export const ClearExercisesModal = ({
 								});
 							}}
 						>
-							Confim
-						</ClearWorkout>
-					</div>
-				</div>
-			</Box>
-		</Modal>
-	);
-};
-
-export const SaveWorkoutModal = ({
-	saveWorkoutModal,
-	setSaveWorkoutModal,
-	workoutName,
-	updateWorkoutName,
-	workoutData,
-}) => {
-	function addExercisesToDb() {
-		workoutData.forEach((exercise) => {
-			console.log(exercise);
-			addExerciseData(exercise).then(setSaveWorkoutModal(false));
-		});
-	}
-	return (
-		<Modal
-			open={saveWorkoutModal}
-			onClose={() => setSaveWorkoutModal(false)}
-			aria-labelledby="modal-save-workout"
-			sx={{ top: "25%" }}
-		>
-			<Box
-				component="div"
-				sx={{
-					backgroundColor: "white",
-					display: "flex",
-					padding: "5rem",
-					margin: "0 auto",
-					width: "75%",
-					borderRadius: "10px",
-					boxShadow: 10,
-					alignItems: "center",
-				}}
-			>
-				<div>
-					<h1 style={{ justifyContent: "center" }}>Save all the workouts!!!</h1>
-					<form onSubmit={() => {}}>
-						<input
-							type="text"
-							name="text"
-							placeholder="Workout Name"
-							required
-							value={workoutName}
-							onChange={updateWorkoutName}
-						/>
-					</form>
-					<div style={{ display: "flex", justifyContent: "flex-end" }}>
-						<CancelClearWorkoutBtn onClick={() => setSaveWorkoutModal(false)}>
-							Cancel
-						</CancelClearWorkoutBtn>
-						<ClearWorkout onClick={() => addExercisesToDb()}>
 							Confim
 						</ClearWorkout>
 					</div>
