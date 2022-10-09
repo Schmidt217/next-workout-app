@@ -13,6 +13,7 @@ const Home = () => {
 		if (!user) {
 			router.push("/login");
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [user]);
 
 	const name = user?.email.split("@").shift();

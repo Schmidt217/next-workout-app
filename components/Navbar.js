@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -16,7 +17,7 @@ const Navbar = () => {
 		if (!user) {
 			router.push("/login");
 		}
-	}, []);
+	}, [router, user]);
 
 	return (
 		<nav className="navigation">

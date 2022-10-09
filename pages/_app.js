@@ -1,5 +1,5 @@
 import "../styles/globals.css";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useLocalStorage } from "../components/useLocalStorage";
 import Layout from "../components/Layout";
 import ExerciseContextProvider from "../context/state";

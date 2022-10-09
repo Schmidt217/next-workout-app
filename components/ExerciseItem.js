@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { useEffect, useContext } from "react";
 import AddToWorkoutBtn from "../ui/AddToWorkoutBtn";
 import AddFavoritesBtn from "../ui/AddFavoritesBtn";
@@ -13,6 +14,7 @@ const ExerciseItem = (props) => {
 
 	useEffect(() => {
 		exerciseCtx.getExercises();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	const isAddedToWorkout = myWorkout?.find((item) => item.id === id);

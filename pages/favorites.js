@@ -12,6 +12,7 @@ function Favorites(props) {
 
 	useEffect(() => {
 		exerciseCtx.getFavoritesExercises();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	if (exerciseCtx.exercises.length < 0) {

@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import React, { useEffect, useState } from "react";
 import {
 	useAuthState,
@@ -12,14 +13,13 @@ import Spinner from "../components/Spinner";
 function ResetPassword() {
 	const [email, setEmail] = useState("");
 	const [user] = useAuthState(auth);
-	const [sendPasswordResetEmail, sending, error] = useSendPasswordResetEmail(
-		auth
-	);
+	const [sendPasswordResetEmail, sending, error] =
+		useSendPasswordResetEmail(auth);
 	const router = useRouter();
 
 	useEffect(() => {
-		// if (loading) return <Spinner />;
 		if (user) router.push("/");
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [user]);
 
 	if (error) {

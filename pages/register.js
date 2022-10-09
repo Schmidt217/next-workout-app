@@ -16,6 +16,16 @@ function Register() {
 	const [createUserWithEmailAndPassword, user, loading, error] =
 		useCreateUserWithEmailAndPassword(auth);
 
+	useEffect(() => {
+		if (loading) return <Spinner />;
+		if (user) {
+			setTimeout(() => {
+				router.push("/");
+			}, 5000);
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [user, loading]);
+
 	const register = () => {
 		if (confirmPw !== password) {
 			return toast.error("Your passwords do not match!", {
@@ -42,15 +52,6 @@ function Register() {
 			progress: undefined,
 		});
 	}
-
-	useEffect(() => {
-		if (loading) return <Spinner />;
-		if (user) {
-			setTimeout(() => {
-				router.push("/");
-			}, 5000);
-		}
-	}, [user, loading]);
 
 	if (user) {
 		return (
