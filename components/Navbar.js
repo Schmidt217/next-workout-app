@@ -17,7 +17,9 @@ const Navbar = () => {
 		if (!user) {
 			router.push("/login");
 		}
-	}, [router, user]);
+		console.log(user);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [user]);
 
 	return (
 		<nav className="navigation">
