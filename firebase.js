@@ -28,8 +28,8 @@ const firebaseConfig = {
 };
 
 const firebaseApp = initializeApp(firebaseConfig);
-export const auth = getAuth(firebaseApp);
 const db = getFirestore(firebaseApp);
+export const auth = getAuth(firebaseApp);
 const googleProvider = new GoogleAuthProvider();
 const facebookProvider = new FacebookAuthProvider();
 
