@@ -9,6 +9,7 @@ const ExerciseContextProvider = ({ children }) => {
 
 	const getExercises = async () => {
 		const data = await getExerciseData();
+		console.log("IS THIS THE FIRST SPOT?");
 		setFavoriteExercises(data);
 	};
 

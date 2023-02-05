@@ -4,6 +4,7 @@ import AddToWorkoutBtn from "../ui/AddToWorkoutBtn";
 import AddFavoritesBtn from "../ui/AddFavoritesBtn";
 import RemoveFromWorkoutBtn from "../ui/RemoveFromWorkoutBtn";
 import ExerciseCard from "./styles/ExerciseCard";
+import ExerciseInfo from "./styles/ExerciseInfo";
 import RemoveFavoritesBtn from "../ui/RemoveFavoritesBtn";
 import { ExerciseContext } from "../context/state";
 
@@ -24,7 +25,7 @@ const ExerciseItem = (props) => {
 
 	return (
 		<ExerciseCard>
-			<div>
+			<ExerciseInfo>
 				{isAddedToFavorites ? (
 					<RemoveFavoritesBtn
 						exercise={props.exercise}
@@ -46,10 +47,13 @@ const ExerciseItem = (props) => {
 						display: "flex",
 						margin: "auto",
 						borderRadius: 10,
+						boxShadow: "5px 5px 10px #bbb",
 					}}
 				/>
 				<h2
-					style={{ display: "flex", justifyContent: "center", height: "60px" }}
+					style={{
+						height: "60px",
+					}}
 				>
 					{name.toUpperCase()}
 				</h2>
@@ -71,7 +75,7 @@ const ExerciseItem = (props) => {
 						setMyWorkout={setMyWorkout}
 					/>
 				)}
-			</div>
+			</ExerciseInfo>
 		</ExerciseCard>
 	);
 };
