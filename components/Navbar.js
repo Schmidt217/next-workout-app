@@ -6,7 +6,7 @@ import Image from "next/image";
 import icon from "../images/weightlifting-icon.svg";
 import { logout } from "../firebase";
 
-const Navbar = ({ user }) => {
+const Navbar = ({ user = null }) => {
 	const [isNavExpanded, setIsNavExpanded] = useState(false);
 	const router = useRouter();
 
