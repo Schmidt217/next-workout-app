@@ -4,7 +4,7 @@ import Navbar from "./Navbar";
 const Layout = (props) => {
 	return (
 		<>
-			<Navbar />
+			<Navbar user={props.user} />
 			<main>{props.children}</main>
 		</>
 	);

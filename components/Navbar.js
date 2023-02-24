@@ -1,25 +1,21 @@
 /* eslint-disable react/no-unescaped-entities */
-// import { auth } from "../firebase";
 import { useState } from "react";
 import Link from "next/link";
-// import { useRouter } from "next/router";
+import { useRouter } from "next/router";
 import Image from "next/image";
 import icon from "../images/weightlifting-icon.svg";
-// import { useAuthState } from "react-firebase-hooks/auth";
 import { signOut } from "firebase/auth";
 
-const Navbar = () => {
+const Navbar = ({ user }) => {
 	const [isNavExpanded, setIsNavExpanded] = useState(false);
-	// const [user] = useAuthState(auth);
-	// const router = useRouter();
-	// console.log(auth);
-	// console.log(user);
-	// useEffect(() => {
-	// 	if (!user) {
-	// 		router.push("/login");
-	// 	}
-	// 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	// }, [user]);
+	const router = useRouter();
+
+	useEffect(() => {
+		if (!user) {
+			router.push("/login");
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [user]);
 
 	return (
 		<nav className="navigation">
@@ -66,7 +62,7 @@ const Navbar = () => {
 					</li>
 
 					{user && (
-						<button className="signout-btn" onClick={() => signOut()}>
+						<button className="signout-btn" onClick={() => signOut(user)}>
 							Sign Out
 						</button>
 					)}
