@@ -20,10 +20,9 @@ function MyApp({ Component, pageProps }) {
 	return (
 		<>
 			<ExerciseContextProvider>
-				<Layout user={user}>
+				<Layout>
 					<Component
 						{...pageProps}
-						user={user}
 						loading={loading}
 						setLoading={setLoading}
 						myWorkout={myWorkout}
