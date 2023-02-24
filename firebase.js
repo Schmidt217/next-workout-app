@@ -1,5 +1,4 @@
 import "firebase/compat/firestore";
-import auth from "firebase/compat/app";
 import { initializeApp } from "firebase/app";
 import {
 	signInWithPopup,

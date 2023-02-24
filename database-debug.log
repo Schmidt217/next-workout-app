@@ -1,0 +1,15 @@
+WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by io.netty.util.internal.ReflectionUtil (file:/Users/mschmidt/.cache/firebase/emulators/firebase-database-emulator-v4.9.0.jar) to field sun.nio.ch.SelectorImpl.selectedKeys
+WARNING: Please consider reporting this to the maintainers of io.netty.util.internal.ReflectionUtil
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+14:00:10.050 [NamespaceSystem-akka.actor.default-dispatcher-4] INFO akka.event.slf4j.Slf4jLogger - Slf4jLogger started
+14:00:10.304 [main] INFO com.firebase.server.forge.App$ - Listening at localhost:5033
+14:00:12.683 [NamespaceSystem-akka.actor.default-dispatcher-5] INFO com.firebase.core.namespace.NamespaceActor - workout-app-f6971-default-rtdb successfully activated FBKV (SurveyIdle(0)) wait: 206ms, init: 0ms
+14:00:12.806 [NamespaceSystem-blocking-namespace-operation-dispatcher-7:workout-app-f6971-default-rtdb$-660504842:] INFO com.firebase.core.namespace.StateManager - Namespace workout-app-f6971-default-rtdb status Active to Active
+14:01:22.675 [NamespaceSystem-akka.actor.default-dispatcher-11] INFO com.firebase.core.namespace.NamespaceActor - workout-app-f6971 successfully activated FBKV (SurveyIdle(0)) wait: 12ms, init: 0ms
+14:03:39.019 [Thread-0] INFO com.firebase.server.forge.App$ - Attempting graceful shutdown.
+14:03:39.027 [NamespaceSystem-akka.actor.default-dispatcher-12] INFO com.firebase.core.namespace.Terminator$Terminator - 2 actors left to terminate: workout-app-f6971, workout-app-f6971-default-rtdb
+14:03:39.035 [NamespaceSystem-akka.actor.default-dispatcher-5] INFO com.firebase.core.namespace.NamespaceActor - stopped namespace actor for workout-app-f6971
+14:03:39.035 [NamespaceSystem-akka.actor.default-dispatcher-12] INFO com.firebase.core.namespace.NamespaceActor - stopped namespace actor for workout-app-f6971-default-rtdb
+14:03:39.055 [Thread-0] INFO com.firebase.server.forge.App$ - Graceful shutdown complete.

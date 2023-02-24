@@ -15,5 +15,16 @@
         "destination": "/index.html"
       }
     ]
+  },
+  "emulators": {
+    "database": {
+      "port": 5033
+    },
+    "hosting": {
+      "port": 5034
+    },
+    "ui": {
+      "enabled": true
+    }
   }
 }
