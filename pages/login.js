@@ -37,7 +37,10 @@ function Login() {
 					onChange={(e) => setPassword(e.target.value)}
 					placeholder="Password"
 				/>
-				<button className="login__btn" onClick={emailSignIn}>
+				<button
+					className="login__btn"
+					onClick={() => emailSignIn(email, password)}
+				>
 					Login
 				</button>
 				<button className="login__btn login__google" onClick={googleSignIn}>

@@ -53,6 +53,8 @@ export function googleSignIn() {
 			// The AuthCredential type that was used.
 			const credential = GoogleAuthProvider.credentialFromError(error);
 			if (error) {
+				if (errorMessage === "Firebase: Error (auth/popup-closed-by-user).")
+					return;
 				return toast.error(errorMessage, {
 					position: "top-center",
 					autoClose: 5000,
@@ -83,6 +85,9 @@ export function facebookSignIn() {
 			// The AuthCredential type that was used.
 			const credential = FacebookAuthProvider.credentialFromError(error);
 			if (error) {
+				console.log(errorMessage);
+				if (errorMessage === "Firebase: Error (auth/popup-closed-by-user).")
+					return;
 				return toast.error(errorMessage, {
 					position: "top-center",
 					autoClose: 5000,
@@ -96,23 +101,19 @@ export function facebookSignIn() {
 		});
 }
 
-export function emailSignIn() {
-	signInWithEmailAndPassword(auth, email, password)
-		.then(() => {
-			const user = userCredential.user;
-		})
-		.catch((error) => {
-			console.log(error);
-			return toast.error("Incorrect email or password", {
-				position: "top-center",
-				autoClose: 5000,
-				hideProgressBar: false,
-				closeOnClick: true,
-				pauseOnHover: true,
-				draggable: true,
-				progress: undefined,
-			});
+export function emailSignIn(email, password) {
+	signInWithEmailAndPassword(auth, email, password).catch((error) => {
+		console.log(error);
+		return toast.error("Incorrect email or password", {
+			position: "top-center",
+			autoClose: 5000,
+			hideProgressBar: false,
+			closeOnClick: true,
+			pauseOnHover: true,
+			draggable: true,
+			progress: undefined,
 		});
+	});
 }
 
 // - DATABASE METHODS

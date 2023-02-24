@@ -5,8 +5,6 @@ import ExerciseView from "./styles/ExerciseView";
 import ClearWorkoutBtn from "../ui/ClearWorkoutBtn";
 import { ClearExercisesModal } from "./Modals";
 
-// TODO: make save workout modal function
-
 const TodaysWorkout = ({ myWorkout, setMyWorkout }) => {
 	const [clearExercisesModal, setClearExercisesModal] = useState(false);
 
