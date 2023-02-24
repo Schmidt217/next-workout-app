@@ -12,13 +12,14 @@ const Navbar = () => {
 	const [isNavExpanded, setIsNavExpanded] = useState(false);
 	const [user] = useAuthState(auth);
 	const router = useRouter();
-
-	useEffect(() => {
-		if (!user) {
-			router.push("/login");
-		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [user]);
+	// console.log(auth);
+	// console.log(user);
+	// useEffect(() => {
+	// 	if (!user) {
+	// 		router.push("/login");
+	// 	}
+	// 	// eslint-disable-next-line react-hooks/exhaustive-deps
+	// }, [user]);
 
 	return (
 		<nav className="navigation">
