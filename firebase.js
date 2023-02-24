@@ -85,7 +85,6 @@ export function facebookSignIn() {
 			// The AuthCredential type that was used.
 			const credential = FacebookAuthProvider.credentialFromError(error);
 			if (error) {
-				console.log(errorMessage);
 				if (errorMessage === "Firebase: Error (auth/popup-closed-by-user).")
 					return;
 				return toast.error(errorMessage, {

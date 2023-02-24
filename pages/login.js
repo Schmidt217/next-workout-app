@@ -24,7 +24,7 @@ function Login() {
 			router.push("/");
 		}
 	}, [user, loading, router]);
-
+	console.log(user);
 	return (
 		<div className="login">
 			<div className="login__container">

@@ -1,10 +1,10 @@
 /* eslint-disable react/no-unescaped-entities */
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import icon from "../images/weightlifting-icon.svg";
-import { signOut } from "firebase/auth";
+import { logout } from "../firebase";
 
 const Navbar = ({ user }) => {
 	const [isNavExpanded, setIsNavExpanded] = useState(false);
@@ -16,7 +16,7 @@ const Navbar = ({ user }) => {
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [user]);
-
+	console.log(user);
 	return (
 		<nav className="navigation">
 			<button
@@ -62,7 +62,7 @@ const Navbar = ({ user }) => {
 					</li>
 
 					{user && (
-						<button className="signout-btn" onClick={() => signOut(user)}>
+						<button className="signout-btn" onClick={() => logout(user)}>
 							Sign Out
 						</button>
 					)}
