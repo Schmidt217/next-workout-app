@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useLocalStorage } from "../components/useLocalStorage";
-// import { auth } from "../firebase";
-// import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
 import Layout from "../components/Layout";
 import ExerciseContextProvider from "../context/state";
 import { ToastContainer } from "react-toastify";
@@ -14,15 +14,16 @@ import "../styles/nav.css";
 
 function MyApp({ Component, pageProps }) {
 	const [myWorkout, setMyWorkout] = useLocalStorage("exercise", []);
-	// const [user] = useAuthState(auth);
+	const [user] = useAuthState(auth);
 	const [loading, setLoading] = useState(false);
 
 	return (
 		<>
 			<ExerciseContextProvider>
-				<Layout>
+				<Layout user={user}>
 					<Component
 						{...pageProps}
+						user={user}
 						loading={loading}
 						setLoading={setLoading}
 						myWorkout={myWorkout}

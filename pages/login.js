@@ -13,11 +13,12 @@ function Login() {
 	const [password, setPassword] = useState("");
 	const router = useRouter();
 
-	// useEffect(() => {
-	// 	if (user) {
-	// 		router.push("/");
-	// 	}
-	// }, [user]);
+	useEffect(() => {
+		if (user) {
+			router.push("/");
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [user]);
 	return (
 		<div className="login">
 			<div className="login__container">

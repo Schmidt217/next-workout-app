@@ -1,22 +1,22 @@
 /* eslint-disable react/no-unescaped-entities */
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
-// import { useRouter } from "next/router";
+import { useRouter } from "next/router";
 import Image from "next/image";
 import icon from "../images/weightlifting-icon.svg";
 import { logout } from "../firebase";
 
 const Navbar = () => {
 	const [isNavExpanded, setIsNavExpanded] = useState(false);
-	// const router = useRouter();
+	const router = useRouter();
 
-	// useEffect(() => {
-	// 	if (!user) {
-	// 		router.push("/login");
-	// 	}
-	// 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	// }, [user]);
-	// console.log(user);
+	useEffect(() => {
+		if (!user) {
+			router.push("/login");
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [user]);
+	console.log(user);
 	return (
 		<nav className="navigation">
 			<button
@@ -60,11 +60,11 @@ const Navbar = () => {
 					<li>
 						<Link href="/favorites">Favorites</Link>
 					</li>
-					{/* {user && ( */}
-					{/* <button className="signout-btn" onClick={logout}>
-						Sign Out
-					</button> */}
-					{/* )} */}
+					{user && (
+						<button className="signout-btn" onClick={logout}>
+							Sign Out
+						</button>
+					)}
 				</ul>
 			</div>
 		</nav>
