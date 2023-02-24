@@ -61,9 +61,9 @@ const Navbar = () => {
 						<Link href="/favorites">Favorites</Link>
 					</li>
 					{/* {user && ( */}
-					<button className="signout-btn" onClick={logout}>
+					{/* <button className="signout-btn" onClick={logout}>
 						Sign Out
-					</button>
+					</button> */}
 					{/* )} */}
 				</ul>
 			</div>
