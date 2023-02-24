@@ -17,8 +17,7 @@ function Login({ user }) {
 		if (user) {
 			router.push("/");
 		}
-	}, [router, user]);
-	console.log(user);
+	}, [user]);
 	return (
 		<div className="login">
 			<div className="login__container">
