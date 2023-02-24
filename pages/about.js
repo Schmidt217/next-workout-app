@@ -1,10 +1,6 @@
-import { useContext } from "react";
 import AboutPage from "../components/styles/AboutPage";
-import { ExerciseContext } from "../context/state";
 
 const About = () => {
-	const exerciseCtx = useContext(ExerciseContext);
-
 	return (
 		<>
 			<AboutPage>
