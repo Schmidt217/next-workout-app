@@ -1,10 +1,10 @@
 /* eslint-disable react/no-unescaped-entities */
-import { auth, googleSignIn, facebookSignIn, emailSignIn } from "../firebase";
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Image from "next/image";
 
+import { auth, googleSignIn, facebookSignIn, emailSignIn } from "../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import google from "../images/google.svg";
 import facebook from "../images/Facebook.svg";
