@@ -4,6 +4,7 @@ import { auth } from "../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Layout from "../components/Layout";
 import ExerciseContextProvider from "../context/state";
+import Spinner from "../components/Spinner";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../styles/globals.css";
@@ -14,8 +15,9 @@ import "../styles/nav.css";
 
 function MyApp({ Component, pageProps }) {
 	const [myWorkout, setMyWorkout] = useLocalStorage("exercise", []);
-	const [user] = useAuthState(auth || null);
+	const [user] = useAuthState(auth);
 	const [loading, setLoading] = useState(false);
+	if (!auth) return <Spinner />;
 	return (
 		<>
 			<ExerciseContextProvider>
