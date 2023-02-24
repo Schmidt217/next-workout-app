@@ -1,6 +1,6 @@
-import { auth } from "../firebase";
 import React, { useState } from "react";
 import { useLocalStorage } from "../components/useLocalStorage";
+import { auth } from "../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Layout from "../components/Layout";
 import ExerciseContextProvider from "../context/state";
