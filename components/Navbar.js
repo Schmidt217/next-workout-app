@@ -1,17 +1,17 @@
 /* eslint-disable react/no-unescaped-entities */
-import { auth } from "../firebase";
-import { useEffect, useState } from "react";
+// import { auth } from "../firebase";
+import { useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/router";
+// import { useRouter } from "next/router";
 import Image from "next/image";
 import icon from "../images/weightlifting-icon.svg";
-import { useAuthState } from "react-firebase-hooks/auth";
+// import { useAuthState } from "react-firebase-hooks/auth";
 import { signOut } from "firebase/auth";
 
 const Navbar = () => {
 	const [isNavExpanded, setIsNavExpanded] = useState(false);
-	const [user] = useAuthState(auth);
-	const router = useRouter();
+	// const [user] = useAuthState(auth);
+	// const router = useRouter();
 	// console.log(auth);
 	// console.log(user);
 	// useEffect(() => {
@@ -66,7 +66,7 @@ const Navbar = () => {
 					</li>
 
 					{user && (
-						<button className="signout-btn" onClick={() => signOut(auth)}>
+						<button className="signout-btn" onClick={() => signOut()}>
 							Sign Out
 						</button>
 					)}
