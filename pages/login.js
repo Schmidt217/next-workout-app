@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Image from "next/image";
@@ -8,7 +8,7 @@ import { googleSignIn, facebookSignIn, emailSignIn } from "../firebase";
 import google from "../images/google.svg";
 import facebook from "../images/Facebook.svg";
 
-function Login() {
+function Login({ user }) {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const router = useRouter();
