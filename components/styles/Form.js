@@ -11,7 +11,7 @@ const Form = styled.form`
 	font-size: 1.5rem;
 	line-height: 1.5;
 	font-weight: 600;
-	margin: 0px 100px 20px 100px;
+	margin: 20px 100px 20px 100px;
 	@media (max-width: 1000px) {
 		margin: 0;
 	}
@@ -33,7 +33,7 @@ const Form = styled.form`
 	}
 	input[type="submit"] {
 		width: auto;
-		background: #5e7be6;
+		background: #e74c3c;
 		cursor: pointer;
 		color: white;
 		border: 0;

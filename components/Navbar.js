@@ -49,7 +49,7 @@ const Navbar = () => {
 				width={75}
 				height={50}
 			/>
-			<h1 className="nav-name">Daily Workout</h1>
+			<h1 className="nav-name">Workout Buildr</h1>
 			<div className={isNavExpanded ? "nav-menu expanded" : "nav-menu"}>
 				<ul>
 					<li>

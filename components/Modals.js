@@ -60,8 +60,8 @@ export const ClearExercisesModal = ({
 };
 
 const ClearWorkout = styled.button`
-	background: red;
-	color: #222;
+	background: #e74c3c;
+	color: #fff;
 	cursor: pointer;
 	border: 0;
 	border-radius: 10px;
@@ -72,9 +72,6 @@ const ClearWorkout = styled.button`
 	font-size: 1rem;
 	padding: 0.8rem 1.5rem;
 	transition: all 0.5s;
-	&:active {
-		opacity: 0.7;
-	}
 `;
 
 const CancelClearWorkoutBtn = styled.button`

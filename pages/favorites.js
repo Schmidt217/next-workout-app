@@ -31,7 +31,10 @@ function Favorites(props) {
 				Favorite Workouts
 			</h1>
 			{exerciseCtx.exercises?.length === 0 ? (
-				"You have no favorited exercises. Search for exercises and press the star icon to favorite a workout!"
+				<p style={{ textAlign: "center" }}>
+					You have no favorited exercises. Search for exercises and press the
+					star icon to favorite a workout!
+				</p>
 			) : (
 				<ExerciseList
 					exercises={exerciseCtx.exercises}

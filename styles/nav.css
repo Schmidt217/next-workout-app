@@ -1,8 +1,7 @@
 .navigation {
-	background-color: #5e7be6;
+	background-color: #e74c3c;
 	height: 60px;
 	margin: 0;
-	/* padding: 0 0 0 1.5rem; */
 	display: flex;
 	align-items: center;
 	position: relative;
@@ -34,8 +33,34 @@
 }
 .nav-menu li a {
 	text-decoration: none;
-	display: block;
 	width: 100%;
+	font-size: 1em;
+}
+.nav-menu ul li a,
+.nav-menu ul li a:after,
+.nav-menu ul li a:before {
+	transition: all 0.5s;
+}
+
+/* stroke */
+.nav-menu ul li a {
+	position: relative;
+}
+.nav-menu ul li a:after {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	width: 0%;
+	content: ".";
+	color: transparent;
+	background: #000;
+	height: 2px;
+}
+.nav-menu ul li a:hover:after {
+	width: 100%;
+	font-size: 1.1em;
 }
 
 .signout-btn {
@@ -74,11 +99,10 @@
 		flex-direction: column;
 		width: 175px;
 		height: calc(100vh - 60px);
-		background-color: #5e7be6;
+		background-color: #e74c3c;
 		border-top: 1px solid black;
 		transform: translateX(100%);
 		transition: 0.4s ease-in;
-		z-index: 100;
 	}
 	.nav-menu li {
 		text-align: center;
@@ -88,9 +112,6 @@
 		color: black;
 		width: 100%;
 		padding: 1.25rem 0;
-	}
-	.nav-menu li:hover {
-		background-color: #eee;
 	}
 	.signout-btn {
 		position: relative;

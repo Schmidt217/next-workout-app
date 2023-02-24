@@ -9,8 +9,8 @@ function ClearWorkoutBtn({ setClearExercisesModal }) {
 }
 
 const Button = styled.button`
-	background: red;
-	color: #222;
+	background: #e74c3c;
+	color: #fff;
 	font-weight: bold;
 	cursor: pointer;
 	border: 0;
@@ -19,6 +19,9 @@ const Button = styled.button`
 	font-size: 1rem;
 	padding: 0.8rem 1.5rem;
 	transition: all 0.5s;
+	&:hover {
+		transform: scale(1.02);
+	}
 	&:active {
 		opacity: 0.7;
 	}

@@ -19,7 +19,7 @@ const AddToWorkoutBtn = (props) => {
 };
 
 const Button = styled.button`
-	background: #5e7be6;
+	background: #e74c3c;
 	color: white;
 	cursor: pointer;
 	font-weight: 500;
@@ -31,9 +31,6 @@ const Button = styled.button`
 	font-size: 1rem;
 	padding: 0.8rem 1.5rem;
 	transition: all 0.5s;
-	&[disabled] {
-		opacity: 0.5;
-	}
 `;
 
 export default AddToWorkoutBtn;
