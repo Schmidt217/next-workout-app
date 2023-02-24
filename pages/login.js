@@ -4,26 +4,20 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import Image from "next/image";
 
-import { auth, googleSignIn, facebookSignIn, emailSignIn } from "../firebase";
-import { useAuthState } from "react-firebase-hooks/auth";
+import { googleSignIn, facebookSignIn, emailSignIn } from "../firebase";
 import google from "../images/google.svg";
 import facebook from "../images/Facebook.svg";
-import Spinner from "../components/Spinner";
 
-function Login() {
+function Login({ user }) {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-	const [user, loading] = useAuthState(auth);
 	const router = useRouter();
 
 	useEffect(() => {
-		if (loading) {
-			return <Spinner />;
-		}
 		if (user) {
 			router.push("/");
 		}
-	}, [user, loading, router]);
+	}, [router, user]);
 	console.log(user);
 	return (
 		<div className="login">
