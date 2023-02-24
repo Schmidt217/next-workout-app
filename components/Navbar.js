@@ -1,4 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
+import { auth } from "../firebase";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -6,7 +7,6 @@ import Image from "next/image";
 import icon from "../images/weightlifting-icon.svg";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { signOut } from "firebase/auth";
-import { auth } from "../firebase";
 
 const Navbar = () => {
 	const [isNavExpanded, setIsNavExpanded] = useState(false);
@@ -17,7 +17,6 @@ const Navbar = () => {
 		if (!user) {
 			router.push("/login");
 		}
-		console.log(user);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [user]);
 

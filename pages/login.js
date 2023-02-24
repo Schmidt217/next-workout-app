@@ -1,24 +1,29 @@
 /* eslint-disable react/no-unescaped-entities */
-import React, { useState } from "react";
+import { auth, googleSignIn, facebookSignIn, emailSignIn } from "../firebase";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Image from "next/image";
 
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth, googleSignIn, facebookSignIn, emailSignIn } from "../firebase";
 import google from "../images/google.svg";
 import facebook from "../images/Facebook.svg";
+import Spinner from "../components/Spinner";
 
 function Login() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-	const [user] = useAuthState(auth);
-
+	const [user, loading] = useAuthState(auth);
 	const router = useRouter();
 
-	if (user) {
-		router.push("/");
-	}
+	useEffect(() => {
+		if (loading) {
+			return <Spinner />;
+		}
+		if (user) {
+			router.push("/");
+		}
+	}, [user, loading, router]);
 
 	return (
 		<div className="login">
