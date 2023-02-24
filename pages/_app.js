@@ -14,7 +14,7 @@ import "../styles/nav.css";
 
 function MyApp({ Component, pageProps }) {
 	const [myWorkout, setMyWorkout] = useLocalStorage("exercise", []);
-	const [user] = useAuthState(auth);
+	const [user] = useAuthState(auth || null);
 	const [loading, setLoading] = useState(false);
 	return (
 		<>
