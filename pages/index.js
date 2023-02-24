@@ -1,12 +1,9 @@
 import { useEffect } from "react";
 import Head from "next/head";
 import SearchExercise from "../components/SearchExercise";
-import { auth } from "../firebase";
-import { useAuthState } from "react-firebase-hooks/auth";
 import { useRouter } from "next/router";
 
-const Home = () => {
-	const [user] = useAuthState(auth);
+const Home = ({ user }) => {
 	const router = useRouter();
 
 	useEffect(() => {
