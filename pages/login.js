@@ -43,7 +43,7 @@ function Login({ user }) {
 					Login
 				</button>
 				<button className="login__btn login__google" onClick={googleSignIn}>
-					<Image alt="Google" src={google} width={60} height={40} />
+					<Image alt="Google" src={google} width={40} height={40} />
 					Login with Google
 				</button>
 				<button className="login__btn login__google" onClick={facebookSignIn}>
