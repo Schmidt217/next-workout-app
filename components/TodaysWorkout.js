@@ -9,7 +9,7 @@ const TodaysWorkout = ({ myWorkout, setMyWorkout }) => {
 	const [clearExercisesModal, setClearExercisesModal] = useState(false);
 
 	return (
-		<div>
+		<div style={{ height: "100vh" }}>
 			<ClearExercisesModal
 				clearExercisesModal={clearExercisesModal}
 				setClearExercisesModal={setClearExercisesModal}

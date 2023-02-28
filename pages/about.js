@@ -2,7 +2,7 @@ import AboutPage from "../components/styles/AboutPage";
 
 const About = () => {
 	return (
-		<>
+		<div style={{ height: "100vh" }}>
 			<AboutPage>
 				<h1>Daily Workout App</h1>
 				<small>Version 1.0.0</small>
@@ -14,7 +14,7 @@ const About = () => {
 					future.
 				</p>
 			</AboutPage>
-		</>
+		</div>
 	);
 };
 

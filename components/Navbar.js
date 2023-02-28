@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Image from "next/image";
@@ -8,7 +8,23 @@ import { logout } from "../firebase";
 
 const Navbar = ({ user }) => {
 	const [isNavExpanded, setIsNavExpanded] = useState(false);
+	const sideNavRef = useRef(null);
 	const router = useRouter();
+
+	useEffect(() => {
+		function handleClickOutside(e) {
+			if (sideNavRef.current && !sideNavRef.current.contains(e.target)) {
+				setIsNavExpanded(!isNavExpanded);
+			}
+		}
+		// Add event listener to the document object
+		document.addEventListener("mousedown", handleClickOutside);
+
+		// Remove event listener when the component unmounts
+		return () => {
+			document.removeEventListener("mousedown", handleClickOutside);
+		};
+	}, [isNavExpanded]);
 
 	useEffect(() => {
 		if (!user) {
@@ -17,7 +33,7 @@ const Navbar = ({ user }) => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [user]);
 	return (
-		<nav className="navigation">
+		<nav ref={sideNavRef} className="navigation">
 			<button
 				className="hamburger"
 				onClick={() => {
@@ -48,7 +64,7 @@ const Navbar = ({ user }) => {
 			</div>
 			<h1 className="nav-name">Workout Buildr</h1>
 			<div className={isNavExpanded ? "nav-menu expanded" : "nav-menu"}>
-				<ul>
+				<ul onClick={() => setIsNavExpanded(!isNavExpanded)}>
 					<li>
 						<Link href="/">Home</Link>
 					</li>

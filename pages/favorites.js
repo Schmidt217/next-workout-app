@@ -15,12 +15,12 @@ function Favorites(props) {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
-	if (exerciseCtx.exercises.length < 0) {
+	if (exerciseCtx.exercises?.length < 0) {
 		return <Spinner />;
 	}
 
 	return user ? (
-		<>
+		<div style={{ height: "100vh" }}>
 			<h1
 				style={{
 					display: "flex",
@@ -42,7 +42,7 @@ function Favorites(props) {
 					myWorkout={props.myWorkout}
 				/>
 			)}
-		</>
+		</div>
 	) : (
 		<NoUserPage />
 	);
