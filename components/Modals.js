@@ -50,7 +50,7 @@ export const ClearExercisesModal = ({
 								});
 							}}
 						>
-							Confim
+							Confirm
 						</ClearWorkout>
 					</div>
 				</div>
