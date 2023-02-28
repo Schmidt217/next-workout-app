@@ -37,13 +37,15 @@ const Navbar = ({ user }) => {
 					/>
 				</svg>
 			</button>
-			<Image
-				className="nav-image"
-				alt="weights"
-				src={icon}
-				width={60}
-				height={40}
-			/>
+			<div className="nav-image-container">
+				<Image
+					className="nav-image"
+					alt="weights"
+					src={icon}
+					width={40}
+					height={40}
+				/>
+			</div>
 			<h1 className="nav-name">Workout Buildr</h1>
 			<div className={isNavExpanded ? "nav-menu expanded" : "nav-menu"}>
 				<ul>
