@@ -41,8 +41,8 @@ const Navbar = ({ user }) => {
 				className="nav-image"
 				alt="weights"
 				src={icon}
-				width={67.6}
-				height={45}
+				width={60}
+				height={40}
 			/>
 			<h1 className="nav-name">Workout Buildr</h1>
 			<div className={isNavExpanded ? "nav-menu expanded" : "nav-menu"}>

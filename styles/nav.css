@@ -16,10 +16,7 @@
 	font-size: 1.3rem;
 	margin-left: 1rem;
 }
-.nav-image {
-	display: inline;
-	width: 100%;
-}
+
 .nav-menu {
 	display: flex;
 	justify-content: space-between;
