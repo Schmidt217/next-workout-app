@@ -102,7 +102,6 @@ export function facebookSignIn() {
 
 export function emailSignIn(email, password) {
 	signInWithEmailAndPassword(auth, email, password).catch((error) => {
-		console.log(error);
 		return toast.error("Incorrect email or password", {
 			position: "top-center",
 			autoClose: 5000,
