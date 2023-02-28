@@ -14,7 +14,7 @@ const Navbar = ({ user }) => {
 	useEffect(() => {
 		function handleClickOutside(e) {
 			if (sideNavRef.current && !sideNavRef.current.contains(e.target)) {
-				setIsNavExpanded(!isNavExpanded);
+				setIsNavExpanded(false);
 			}
 		}
 		// Add event listener to the document object
