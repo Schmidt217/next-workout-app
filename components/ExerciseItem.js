@@ -9,7 +9,7 @@ import RemoveFavoritesBtn from "../ui/RemoveFavoritesBtn";
 import { ExerciseContext } from "../context/state";
 
 const ExerciseItem = (props) => {
-	const { gifUrl, name, equipment, id, target } = props.exercise;
+	const { description, name, equipment, id, target } = props.exercise;
 	const { myWorkout, setMyWorkout } = props;
 	const exerciseCtx = useContext(ExerciseContext);
 
@@ -22,6 +22,7 @@ const ExerciseItem = (props) => {
 	const isAddedToFavorites = exerciseCtx.favoriteExercises?.find(
 		(item) => item.id === id
 	);
+	console.log(props.exercise);
 
 	return (
 		<ExerciseCard>
@@ -38,18 +39,6 @@ const ExerciseItem = (props) => {
 						refreshExercises={exerciseCtx.refreshExercises}
 					/>
 				)}
-
-				<img
-					src={gifUrl}
-					alt="Exercise GIF"
-					style={{
-						width: "250px",
-						display: "flex",
-						margin: "auto",
-						borderRadius: 10,
-						boxShadow: "5px 5px 10px #bbb",
-					}}
-				/>
 				<h2
 					style={{
 						height: "60px",
@@ -62,6 +51,7 @@ const ExerciseItem = (props) => {
 					Equipment Used:{" "}
 					{equipment.charAt(0).toUpperCase() + equipment.slice(1)}
 				</p>
+				<p>{description}</p>
 
 				{isAddedToWorkout ? (
 					<RemoveFromWorkoutBtn
